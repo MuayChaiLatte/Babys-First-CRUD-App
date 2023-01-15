@@ -16,6 +16,13 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
         console.log('listening on 3000')
     });
     app.get('/', (req,res) => {
+        db.collection('quotes').find().toArray()
+            .then(results => {
+                console.log(results)
+            })
+            .catch(error => console.error(error))
+
+
         res.sendFile(__dirname + '/index.html')
     });
     app.post('/quotes', (req,res) => {
