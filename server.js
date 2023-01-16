@@ -11,6 +11,8 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
     const db = client.db('star-wars-quotes')
     const quotesCollection = db.collection('quotes')
 
+    
+    app.set('view engine', 'ejs')
     app.use(bodyParser.urlencoded({extended: true}));
     app.listen(3000, function() { // Creates server
         console.log('listening on 3000')
@@ -18,12 +20,13 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
     app.get('/', (req,res) => {
         db.collection('quotes').find().toArray()
             .then(results => {
-                console.log(results)
+                res.render('index.ejs',{quotes: results})
             })
             .catch(error => console.error(error))
+        
 
 
-        res.sendFile(__dirname + '/index.html')
+        // res.sendFile(__dirname + '/index.html')
     });
     app.post('/quotes', (req,res) => {
         quotesCollection.insertOne(req.body)
