@@ -13,7 +13,12 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
 
     
     app.set('view engine', 'ejs')
+    app.use(bodyParser.json())
+    app.use(express.static('public'))
     app.use(bodyParser.urlencoded({extended: true}));
+
+
+
     app.listen(3000, function() { // Creates server
         console.log('listening on 3000')
     });
@@ -35,6 +40,22 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
             })
             .catch(error => console.error(error))
     });
+    app.put('/quotes',(req,res) => {
+        quotesCollection.findOneAndUpdate(
+            {name: 'Yoda'},
+            {
+                $set: {
+                    name: req.body.name,
+                    quote: req.body.quote
+                }
+            },
+            {
+                upsert: true,
+            }
+        )
+            .then(result => res.json('Success'))
+            .catch(error => console.error(error))
+    })
 
 })
 
