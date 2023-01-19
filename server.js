@@ -13,9 +13,10 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
 
     
     app.set('view engine', 'ejs')
+    app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json())
     app.use(express.static('public'))
-    app.use(bodyParser.urlencoded({extended: true}));
+    
 
 
 
@@ -53,7 +54,22 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
                 upsert: true,
             }
         )
-            .then(result => res.json('Success'))
+            .then(result => {
+                res.json('Success')
+            })
+            .catch(error => console.error(error))
+    })
+    app.delete('/quotes', (req,res) => {
+        quotesCollection.deleteOne(
+            {name: req.body.name},
+        )
+            .then(result => {
+                console.log(result)
+                if (result.deletedCount === 0) {
+                    return res.json('No quote to delete')
+                }
+                res.json('Deleted Darth Vader\'s quote')
+            })
             .catch(error => console.error(error))
     })
 
