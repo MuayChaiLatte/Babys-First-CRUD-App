@@ -32,7 +32,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
         
 
 
-        // res.sendFile(__dirname + '/index.html')
+
     });
     app.post('/quotes', (req,res) => {
         quotesCollection.insertOne(req.body)
@@ -72,6 +72,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
             })
             .catch(error => console.error(error))
     })
+
 
 })
 
