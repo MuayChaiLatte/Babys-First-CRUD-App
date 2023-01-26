@@ -27,10 +27,6 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
                 res.render('index.ejs',{quotes: results})
             })
             .catch(error => console.error(error))
-        
-
-
-
     });
     app.post('/quotes', (req,res) => {
         quotesCollection.insertOne(req.body)
@@ -41,11 +37,11 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
     });
     app.put('/quotes',(req,res) => {
         quotesCollection.findOneAndUpdate(
-            {name: 'Yoda'},
+            {name: req.body.update},
             {
                 $set: {
                     name: req.body.name,
-                    quote: req.body.quote
+                    quote: req.body.quote,
                 }
             },
             {

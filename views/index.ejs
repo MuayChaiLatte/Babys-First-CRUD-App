@@ -26,8 +26,15 @@
     <section>
       <div>
         <h2>Replace A Quote!</h2>
-        <p>Replace the first Yoda quote with a Darth Vader quote. Will add new Darth Vader quote if no Yoda quotes found</p>
-        <button id="update-button">Replace Yoda's quote</button>
+        <p>Enter the author who's quote you want to change then provide a replacement author and quote. If no such author exists your replacement author and quote will be added!</p>
+        <div>
+          <input id="updateTarget" type="text" placeholder="Author you want to change" name="updateTarget">
+        </div>
+        <div>
+          <input id="replacementAuthor" type="text" placeholder="Replacement Author" name="replacementAuthor">
+          <input id="replacementQuote" type="text" placeholder="Replacement Quote" name="replacementQuote">
+        </div>
+        <button id="update-button">Replace Author's Quote</button>
       </div>
     </section>
 

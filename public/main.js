@@ -2,14 +2,18 @@ const update = document.querySelector('#update-button')
 const deleteButton = document.querySelector('#delete-button')
 const messageDiv = document.querySelector('#message')
 const deletionTarget = document.querySelector('#deletionTarget')
+const updateTarget = document.querySelector('#updateTarget')
+const replacementQuote = document.querySelector('#replacementQuote')
+const replacementAuthor = document.querySelector('#replacementAuthor')
 
 update.addEventListener('click', _=> {
     fetch('/quotes', {
         method:'put',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({
-            name: 'Darth Vader',
-            quote: 'I find your lack of fath disturbing'
+            update: updateTarget.value,
+            name: replacementAuthor.value,
+            quote: replacementQuote.value,
         })
     })
     .then(res => {
