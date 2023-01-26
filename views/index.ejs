@@ -5,44 +5,61 @@
   <title>yote</title>
 </head>
 <body>
-  <h1>yatty</h1>
-  <form action="/quotes" method="POST">
-    <input type="text" placeholder="name" name="name">
-    <input type="text" placeholder="quote" name="quote">
-    <button type="submit">Submit</button>
-  </form>
+  <header>
+    <h1>The Quote Database!</h1>
+  </header>
 
-  <div>
-    <h2>Darth Vader Invades!</h2>
-    <p>
-        Replace first quote with Darth Vader's
-    </p>
-    <button id="update-button">Replace Yoda's quote</button>
-  </div>
+  <main>
 
-  <h2> Quotes </h2>
-  <ul class="quotes">
-    <!-- Loop through quotes -->
-  <% for(var i = 0; i < quotes.length; i++) {%>
-    <li class="quote">
-      <!-- Output name from the iterated quote object -->
-      <span><%= quotes[i].name %></span>:
-      <!-- Output quote from the iterated quote object -->
-      <span><%= quotes[i].quote %></span>
-    </li>
-  <% } %>
-    </ul>
+    <section>
+      <div>
+        <h2>Add A Quote!</h2>
+        <p>Enter the quote and it's author below</p>
+        <form action="/quotes" method="POST">
+          <input type="text" placeholder="Author" name="name">
+          <input type="text" placeholder="Quote" name="quote">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
 
-  <div>
-    <h2>Eliminate Darth Vader!</h2>
-    <p>
-      Remove a quote from Darth Vader, nothing happens if there are no more Darth Vader quotes to remove.
-    </p>
-    <input id="deletionTarget" type="text" placeholder="Enter author to delete" name="deletionTarget">
-    <button id="delete-button">Remove Darth Vader quote</button>
-  </div>
+    <section>
+      <div>
+        <h2>Replace A Quote!</h2>
+        <p>Replace the first Yoda quote with a Darth Vader quote. Will add new Darth Vader quote if no Yoda quotes found</p>
+        <button id="update-button">Replace Yoda's quote</button>
+      </div>
+    </section>
 
-  <div id="message"></div>
+    <section>
+      <div>
+        <h2>Delete A Quote!</h2>
+        <p>Enter a quote author below to delete one of their quotes.</p>
+        <input id="deletionTarget" type="text" placeholder="Enter author to delete" name="deletionTarget">
+        <button id="delete-button">Remove Darth Vader quote</button>
+        <p id="message"></p>
+      </div>
+    </section>
+
+    <section>
+      <div>
+        <h2>The Quotes List!</h2>
+        <ul class="quotes">
+          <!-- Loop through quotes -->
+          <% for(var i = 0; i < quotes.length; i++) {%>
+          <li class="quote">
+            <!-- Output name from the iterated quote object -->
+            <span><%= quotes[i].name %></span>:
+            <!-- Output quote from the iterated quote object -->
+            <span><%= quotes[i].quote %></span>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+  
   <script src="/main.js"></script>
 </body>
 </html>

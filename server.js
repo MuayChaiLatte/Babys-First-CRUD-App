@@ -20,9 +20,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
 
 
 
-    app.listen(3000, function() { // Creates server
-        console.log('listening on 3000')
-    });
+    
     app.get('/', (req,res) => {
         db.collection('quotes').find().toArray()
             .then(results => {
@@ -72,9 +70,12 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err,client) => {
             })
             .catch(error => console.error(error))
     })
-
-
+    app.listen(3000, function() { // Creates server
+        console.log('listening on 3000')
+    });
+    
 })
+
 
 
 
