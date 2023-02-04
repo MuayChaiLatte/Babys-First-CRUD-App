@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>yote</title>
+  <title>Quote Database</title>
 </head>
 <body>
   <header>
@@ -43,7 +43,7 @@
         <h2>Delete A Quote!</h2>
         <p>Enter a quote author below to delete one of their quotes.</p>
         <input id="deletionTarget" type="text" placeholder="Enter author to delete" name="deletionTarget">
-        <button id="delete-button">Remove Darth Vader quote</button>
+        <button id="delete-button">Delete Author's quote</button>
         <p id="message"></p>
       </div>
     </section>
@@ -59,6 +59,8 @@
             <span><%= quotes[i].name %></span>:
             <!-- Output quote from the iterated quote object -->
             <span><%= quotes[i].quote %></span>
+            <!-- Delete button for iterated quote -->
+            <button class="specificDelete">Delete Me</button> 
           </li>
           <% } %>
         </ul>
