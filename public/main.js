@@ -26,7 +26,7 @@ update.addEventListener('click', _=> {
 })
 
 deleteButton.addEventListener('click', _=> {
-    fetch('/quotes',{
+    fetch('delete-all-matches',{
         method: 'delete',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({
@@ -38,7 +38,7 @@ deleteButton.addEventListener('click', _=> {
     })
     .then(response => {
         if (response === 'No quote to delete') {
-            messageDiv.innerText = 'No Darth Vader quote to delete'
+            messageDiv.innerText = 'No target authors to delete'
         }
         else {
             window.location.reload(true)
